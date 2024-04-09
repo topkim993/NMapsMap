@@ -8,13 +8,28 @@ let package = Package(
     products: [
         .library(
             name: "NMapsMap",
-            targets: ["NMapsMap"]
+            targets: [
+                "NMapsMap",
+                "NMapsGeometryBinary"
+            ]
+        )
+    ],
+    dependencies: [
+        .package(
+            url: "https://github.com/topkim993/NMapsGeometry",
+            .branchItem("main")
         )
     ],
     targets: [
         .binaryTarget(
             name: "NMapsMap",
             path: "framework/NMapsMap.xcframework"
+        ),
+        .target(
+            name: "NMapsGeometryBinary",
+            dependencies: [
+                "NMapsGeometry"
+            ]
         )
     ]
 )
